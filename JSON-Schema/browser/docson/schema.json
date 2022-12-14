@@ -1,0 +1,531 @@
+{
+ "description": "A standard optimized for structured and standardized pubclishing of notice data.", 
+ "title": "Notice Data Standard (City Record)", 
+ "additionalProperties": false, 
+ "definitions": {
+  "org": {
+   "additionalProperties": false, 
+   "properties": {
+    "identifier": {
+     "type": "string", 
+     "description": "sampleValue: 675 \nmappedField: If publishingOrganization:AgencyCode/AgencyDivision, if ref:AdditionalDescription \naction: 0/1 \ncomment: "
+    }, 
+    "name": {
+     "type": "string", 
+     "description": "sampleValue: Department of Transportation \nmappedField: If publishingOrganization:AgencyName, if ref:AdditionalDescription \naction: 0/1 \ncomment: "
+    }, 
+    "classification": {
+     "type": "string", 
+     "description": "sampleValue: Agency \nmappedField: \naction: 3 \ncomment: "
+    }, 
+    "parentOrganization": {
+     "type": "string", 
+     "description": "sampleValue: Department of Transportation \nmappedField: AgencyName, if ref:AdditionalDescription \naction: 0 and 1 \ncomment:"
+    }
+   }, 
+   "type": "object", 
+   "description": "Standardized as defined by the Popolo Project\nSee: http://www.popoloproject.com/specs/organization.html", 
+   "title": "Organization"
+  }, 
+  "SectionName": {
+   "additionalProperties": false, 
+   "properties": {
+    "name": {
+     "type": "string", 
+     "description": "sampleValue: Court Notices \nmappedField: proc_Sections \naction: 1 \ncomment: incl"
+    }, 
+    "id": {
+     "type": "integer", 
+     "description": "The reference ID of the CR section "
+    }
+   }, 
+   "type": "object", 
+   "description": "The name of the section under which the notice appears in the City Record.\n For DCAS, see pproc_Sections for possible values", 
+   "title": "SectionName"
+  }, 
+  "Meeting": {
+   "additionalProperties": false, 
+   "properties": {
+    "identifier": {
+     "type": "integer", 
+     "description": "323 \nmappedField: \naction:3 \ncomment:"
+    }, 
+    "description": {
+     "type": "string", 
+     "description": "sampleValue: Spector Hall 22 Reade Street New York NY \nmappedField: \naction:1 \ncomment:"
+    }, 
+    "classification": {
+     "type": "integer", 
+     "description": "323 \nmappedField: \naction:3 \ncomment: Need to create a classification topic table"
+    }, 
+    "location": {
+     "$ref": "#/definitions/address"
+    }, 
+    "startTime": {
+     "type": "string", 
+     "description": "sampleValue: An ISO 8601 formatted date-time field. \nmappedField: \naction: \ncomment:", 
+     "format": "date-time"
+    }, 
+    "organization": {
+     "$ref": "#/definitions/org"
+    }, 
+    "endTime": {
+     "type": "string", 
+     "description": "sampleValue: An ISO 8601 formatted date-time field. \nmappedField: \naction: \ncomment:", 
+     "format": "date-time"
+    }, 
+    "name": {
+     "type": "string", 
+     "description": "sampleValue: City Bike Hearing \nmappedField: \naction:1 \ncomment:"
+    }
+   }, 
+   "type": "object", 
+   "description": "Standardized as defined by the Popolo Project\nSee: http://www.popoloproject.com/specs/event.html", 
+   "title": "Meeting"
+  }, 
+  "noticeType": {
+   "additionalProperties": false, 
+   "properties": {
+    "name": {
+     "type": "string", 
+     "description": "sampleValue: Public Hearing \nmappedField: Descr [proc_Type_of_Notice.csv] \naction: 1 \ncomment: incl"
+    }, 
+    "id": {
+     "type": "integer", 
+     "description": "The reference ID of the notice type "
+    }
+   }, 
+   "type": "object", 
+   "description": "The type of notices available.\n For DCAS, see proc_Type_of_Notice for possible values", 
+   "title": "NoticeType"
+  }, 
+  "address": {
+   "additionalProperties": false, 
+   "properties": {
+    "city": {
+     "type": "string", 
+     "description": "sampleValue: New York \nmappedField:  \naction: 1 \ncomment:"
+    }, 
+    "name": {
+     "type": "string", 
+     "description": "sampleValue: Spector Hall \nmappedField:  \naction: 1 \ncomment: "
+    }, 
+    "zip": {
+     "type": "number", 
+     "description": "sampleValue: 10001 \nmappedField:  \naction: 1 \ncomment:"
+    }, 
+    "address1": {
+     "type": "string", 
+     "description": "sampleValue: 22 Reade Street \nmappedField:  \naction: 1 \ncomment:"
+    }, 
+    "address2": {
+     "type": "string", 
+     "description": "sampleValue: \nmappedField:  \naction: 1 \ncomment:"
+    }, 
+    "latLong": {
+     "type": "string", 
+     "description": "sampleValue: 40.751320, -74.006172 \nmappedField:  \naction: 3 \ncomment:"
+    }, 
+    "long": {
+     "type": "number", 
+     "description": "sampleValue: -74.006172 \nmappedField:  \naction: 3 \ncomment:"
+    }, 
+    "state": {
+     "type": "string", 
+     "description": "sampleValue: New York \nmappedField:  \naction: 1 \ncomment:"
+    }, 
+    "lat": {
+     "type": "number", 
+     "description": "sampleValue: 40.751320 \nmappedField:  \naction: 3 \ncomment:"
+    }, 
+    "complete": {
+     "type": "string", 
+     "description": "sampleValue: Spector Hall 22 Reade Street New York NY \nmappedField: \naction:1 \ncomment:"
+    }
+   }, 
+   "type": "object", 
+   "description": "Address field defined by CROW. To standardize toward http://schema.org/Place", 
+   "title": "Address"
+  }
+ }, 
+ "$schema": "http://json-schema.org/draft-04/schema#", 
+ "type": "object", 
+ "properties": {
+  "attributes": {
+   "additionalProperties": false, 
+   "properties": {
+    "refOrganization": {
+     "items": {
+      "additionalProperties": false, 
+      "properties": {
+       "identifier": {
+        "type": "string", 
+        "description": "sampleValue: 675 \nmappedField: If publishingOrganization:AgencyCode/AgencyDivision, if ref:AdditionalDescription \naction: 0/1 \ncomment: "
+       }, 
+       "name": {
+        "type": "string", 
+        "description": "sampleValue: Department of Transportation \nmappedField: If publishingOrganization:AgencyName, if ref:AdditionalDescription \naction: 0/1 \ncomment: "
+       }, 
+       "classification": {
+        "type": "string", 
+        "description": "sampleValue: Agency \nmappedField: \naction: 3 \ncomment: "
+       }, 
+       "parentOrganization": {
+        "type": "string", 
+        "description": "sampleValue: Department of Transportation \nmappedField: AgencyName, if ref:AdditionalDescription \naction: 0 and 1 \ncomment:"
+       }
+      }, 
+      "type": "object", 
+      "description": "Standardized as defined by the Popolo Project\nSee: http://www.popoloproject.com/specs/organization.html", 
+      "title": "Organization"
+     }, 
+     "type": "array"
+    }, 
+    "noticeItem": {
+     "type": "string", 
+     "description": "Breaks down agendas into multiple items. Standardization in progress"
+    }, 
+    "refMeeting": {
+     "items": {
+      "additionalProperties": false, 
+      "properties": {
+       "identifier": {
+        "type": "integer", 
+        "description": "323 \nmappedField: \naction:3 \ncomment:"
+       }, 
+       "description": {
+        "type": "string", 
+        "description": "sampleValue: Spector Hall 22 Reade Street New York NY \nmappedField: \naction:1 \ncomment:"
+       }, 
+       "classification": {
+        "type": "integer", 
+        "description": "323 \nmappedField: \naction:3 \ncomment: Need to create a classification topic table"
+       }, 
+       "location": {
+        "$ref": "#/definitions/address"
+       }, 
+       "startTime": {
+        "type": "string", 
+        "description": "sampleValue: An ISO 8601 formatted date-time field. \nmappedField: \naction: \ncomment:", 
+        "format": "date-time"
+       }, 
+       "organization": {
+        "$ref": "#/definitions/org"
+       }, 
+       "endTime": {
+        "type": "string", 
+        "description": "sampleValue: An ISO 8601 formatted date-time field. \nmappedField: \naction: \ncomment:", 
+        "format": "date-time"
+       }, 
+       "name": {
+        "type": "string", 
+        "description": "sampleValue: City Bike Hearing \nmappedField: \naction:1 \ncomment:"
+       }
+      }, 
+      "type": "object", 
+      "description": "Standardized as defined by the Popolo Project\nSee: http://www.popoloproject.com/specs/event.html", 
+      "title": "Meeting"
+     }, 
+     "type": "array"
+    }, 
+    "refAddress": {
+     "items": {
+      "additionalProperties": false, 
+      "properties": {
+       "city": {
+        "type": "string", 
+        "description": "sampleValue: New York \nmappedField:  \naction: 1 \ncomment:"
+       }, 
+       "name": {
+        "type": "string", 
+        "description": "sampleValue: Spector Hall \nmappedField:  \naction: 1 \ncomment: "
+       }, 
+       "zip": {
+        "type": "number", 
+        "description": "sampleValue: 10001 \nmappedField:  \naction: 1 \ncomment:"
+       }, 
+       "address1": {
+        "type": "string", 
+        "description": "sampleValue: 22 Reade Street \nmappedField:  \naction: 1 \ncomment:"
+       }, 
+       "address2": {
+        "type": "string", 
+        "description": "sampleValue: \nmappedField:  \naction: 1 \ncomment:"
+       }, 
+       "latLong": {
+        "type": "string", 
+        "description": "sampleValue: 40.751320, -74.006172 \nmappedField:  \naction: 3 \ncomment:"
+       }, 
+       "long": {
+        "type": "number", 
+        "description": "sampleValue: -74.006172 \nmappedField:  \naction: 3 \ncomment:"
+       }, 
+       "state": {
+        "type": "string", 
+        "description": "sampleValue: New York \nmappedField:  \naction: 1 \ncomment:"
+       }, 
+       "lat": {
+        "type": "number", 
+        "description": "sampleValue: 40.751320 \nmappedField:  \naction: 3 \ncomment:"
+       }, 
+       "complete": {
+        "type": "string", 
+        "description": "sampleValue: Spector Hall 22 Reade Street New York NY \nmappedField: \naction:1 \ncomment:"
+       }
+      }, 
+      "type": "object", 
+      "description": "Address field defined by CROW. To standardize toward http://schema.org/Place", 
+      "title": "Address"
+     }, 
+     "type": "array"
+    }
+   }, 
+   "type": "object", 
+   "description": "Provide more structure for each notice", 
+   "title": "Attributes"
+  }, 
+  "objects": {
+   "oneOf": [
+    {
+     "additionalProperties": false, 
+     "properties": {
+      "publishingOrganization": {
+       "$ref": "#/definitions/org"
+      }, 
+      "noticeEndDate": {
+       "type": "string", 
+       "description": "sampleValue: An ISO 8601 formatted date-time field. \nmappedField: EndDate \naction: 0 \ncomment:", 
+       "format": "date-time"
+      }, 
+      "newEndDateExtension": {
+       "type": "string", 
+       "description": "sampleValue: An ISO 8601 formatted date-time field. \nmappedField: StartDate \naction: 0 \ncomment:", 
+       "format": "date-time"
+      }, 
+      "lastUpdatedAt": {
+       "type": "string", 
+       "description": "sampleValue: An ISO 8601 formatted date-time field. \nmappedField: ? \naction: 0 \ncomment: Needs to be computed?", 
+       "format": "date-time"
+      }, 
+      "createdAt": {
+       "type": "string", 
+       "description": "sampleValue: An ISO 8601 formatted date-time field. \nmappedField: ? \naction: 0 \ncomment: IP This needs to be located. ", 
+       "format": "date-time"
+      }, 
+      "contractTypeFMS": {
+       "type": "string", 
+       "description": "sampleValue:  \nmappedField: AdditionalDescription \naction: 0 \ncomment:"
+      }, 
+      "requestingOrganization": {
+       "$ref": "#/definitions/org"
+      }, 
+      "printOut": {
+       "type": "string", 
+       "description": "sampleValue: \"CITRIX XENAPP ENTERPRISE SOFTWARE...\" \nmappedField: PrintOut \naction: 0 \ncomment: IP"
+      }, 
+      "noticeStartDate": {
+       "type": "string", 
+       "description": "sampleValue: An ISO 8601 formatted date-time field. \nmappedField: StartDate \naction: 0 \ncomment:", 
+       "format": "date-time"
+      }, 
+      "modificationOfServices": {
+       "type": "string", 
+       "description": "sampleValue:  \nmappedField: AdditionalDescription \naction: 0 \ncomment:"
+      }, 
+      "newStartDateExtension": {
+       "type": "string", 
+       "description": "sampleValue: An ISO 8601 formatted date-time field. \nmappedField: StartDate \naction: 0 \ncomment:", 
+       "format": "date-time"
+      }, 
+      "metodOfExtension": {
+       "type": "string", 
+       "description": "sampleValue:  \nmappedField: AdditionalDescription \naction: 0 \ncomment:"
+      }, 
+      "vendor": {
+       "$ref": "#/definitions/org"
+      }, 
+      "noticeType": {
+       "$ref": "#/definitions/noticeType"
+      }, 
+      "noticeTitle": {
+       "type": "string", 
+       "description": "sampleValue: Public Hearing on Bikelanes \nmappedField: ShortTitle \naction: 0 \ncomment:"
+      }, 
+      "originalContactEndDate": {
+       "type": "string", 
+       "description": "sampleValue: An ISO 8601 formatted date-time field. \nmappedField: StartDate \naction: 0 \ncomment:", 
+       "format": "date-time"
+      }, 
+      "orginalAwardMethod": {
+       "type": "string", 
+       "description": "sampleValue:  \nmappedField: AdditionalDescription \naction: 0 \ncomment:"
+      }, 
+      "reasonForRenewal": {
+       "type": "string", 
+       "description": "sampleValue:  \nmappedField: AdditionalDescription \naction: 0 \ncomment:"
+      }, 
+      "personnelInSimiliarTitles": {
+       "type": "string", 
+       "description": "sampleValue:  \nmappedField: AdditionalDescription \naction: 0 \ncomment:"
+      }, 
+      "sectionName": {
+       "$ref": "#/definitions/SectionName"
+      }, 
+      "otherInfo": {
+       "type": "string", 
+       "description": "sampleValue: The services cannot be timely procured through competitive sealed... \nmappedField: PrintOut \naction: 0 \ncomment:IN "
+      }, 
+      "noticeDescription": {
+       "type": "string", 
+       "description": "sampleValue: Hello world of engaged New Yorkers! \nmappedField: AdditionalDescription \naction: 0 \ncomment:"
+      }, 
+      "descriptionOfServices": {
+       "type": "string", 
+       "description": "sampleValue:  \nmappedField: AdditionalDescription \naction: 0 \ncomment:"
+      }, 
+      "personnelInSimiliarTitlesHeadcount": {
+       "type": "integer", 
+       "description": "sampleValue:  \nmappedField: AdditionalDescription \naction: 0 \ncomment:"
+      }
+     }, 
+     "type": "object", 
+     "description": "ProcurementNotice, a sub-schema, is used for publishing notices for procurement notices from the Mayors Office of Contract Services (will depreciate and merge into open-contracting.org framework)", 
+     "title": "ProcurementNotice"
+    }, 
+    {
+     "additionalProperties": false, 
+     "properties": {
+      "publishingOrganization": {
+       "$ref": "#/definitions/org"
+      }, 
+      "noticeEndDate": {
+       "type": "string", 
+       "description": "sampleValue: An ISO 8601 formatted date-time field. \nmappedField: EndDate \naction: 0 \ncomment:", 
+       "format": "date-time"
+      }, 
+      "noticeType": {
+       "$ref": "#/definitions/noticeType"
+      }, 
+      "otherInfo": {
+       "type": "string", 
+       "description": "sampleValue: The services cannot be timely procured through competitive sealed... \nmappedField: PrintOut \naction: 0 \ncomment:IN "
+      }, 
+      "printOut": {
+       "type": "string", 
+       "description": "sampleValue: \"CITRIX XENAPP ENTERPRISE SOFTWARE...\" \nmappedField: PrintOut \naction: 0 \ncomment: IP"
+      }, 
+      "sectionName": {
+       "$ref": "#/definitions/SectionName"
+      }, 
+      "noticeDescription": {
+       "type": "string", 
+       "description": "sampleValue: Hello world of engaged New Yorkers! \nmappedField: AdditionalDescription \naction: 0 \ncomment:"
+      }, 
+      "noticeTitle": {
+       "type": "string", 
+       "description": "sampleValue: Public Hearing on Bikelanes \nmappedField: ShortTitle \naction: 0 \ncomment:"
+      }, 
+      "lastUpdatedAt": {
+       "type": "string", 
+       "description": "sampleValue: An ISO 8601 formatted date-time field. \nmappedField: ? \naction: 0 \ncomment: Needs to be computed?", 
+       "format": "date-time"
+      }, 
+      "noticeStartDate": {
+       "type": "string", 
+       "description": "sampleValue: An ISO 8601 formatted date-time field. \nmappedField: StartDate \naction: 0 \ncomment:", 
+       "format": "date-time"
+      }, 
+      "meeting": {
+       "$ref": "#/definitions/Meeting"
+      }, 
+      "createdAt": {
+       "type": "string", 
+       "description": "sampleValue: An ISO 8601 formatted date-time field. \nmappedField: ? \naction: 0 \ncomment: IP This needs to be located. ", 
+       "format": "date-time"
+      }
+     }, 
+     "type": "object", 
+     "description": "PublicHearing, a sub-schema, is used for publishing notices for public meetings and hearings", 
+     "title": "PublicHearing"
+    }, 
+    {
+     "additionalProperties": false, 
+     "properties": {
+      "contracting": {
+       "type": "string", 
+       "description": "Referenced object to be added based on http://ocds.open-contracting.org/standard/r/1__0__RC/en/standard/intro/"
+      }, 
+      "courtNotice": {
+       "type": "string", 
+       "description": "Referenced object to be added"
+      }, 
+      "propertyDisposition": {
+       "type": "string", 
+       "description": "Referenced object to be added"
+      }, 
+      "ruleDetails": {
+       "type": "string", 
+       "description": "Referenced object to be added"
+      }
+     }, 
+     "type": "object", 
+     "description": "Standardized objects included in the system.", 
+     "title": "remaining to be standardized"
+    }
+   ]
+  }, 
+  "skeleton": {
+   "additionalProperties": false, 
+   "properties": {
+    "publishingOrganization": {
+     "$ref": "#/definitions/org"
+    }, 
+    "noticeEndDate": {
+     "type": "string", 
+     "description": "sampleValue: An ISO 8601 formatted date-time field. \nmappedField: EndDate \naction: 0 \ncomment:", 
+     "format": "date-time"
+    }, 
+    "noticeType": {
+     "$ref": "#/definitions/noticeType"
+    }, 
+    "otherInfo": {
+     "type": "string", 
+     "description": "sampleValue: The services cannot be timely procured through competitive sealed... \nmappedField: PrintOut \naction: 0 \ncomment:IN "
+    }, 
+    "printOut": {
+     "type": "string", 
+     "description": "sampleValue: \"CITRIX XENAPP ENTERPRISE SOFTWARE...\" \nmappedField: PrintOut \naction: 0 \ncomment: IP"
+    }, 
+    "noticeDescription": {
+     "type": "string", 
+     "description": "sampleValue: Hello world of engaged New Yorkers! \nmappedField: AdditionalDescription \naction: 0 \ncomment:"
+    }, 
+    "noticeTitle": {
+     "type": "string", 
+     "description": "sampleValue: Public Hearing on Bikelanes \nmappedField: ShortTitle \naction: 0 \ncomment:"
+    }, 
+    "lastUpdatedAt": {
+     "type": "string", 
+     "description": "sampleValue: An ISO 8601 formatted date-time field. \nmappedField: ? \naction: 0 \ncomment: Needs to be computed?", 
+     "format": "date-time"
+    }, 
+    "noticeStartDate": {
+     "type": "string", 
+     "description": "sampleValue: An ISO 8601 formatted date-time field. \nmappedField: StartDate \naction: 0 \ncomment:", 
+     "format": "date-time"
+    }, 
+    "sectionName": {
+     "$ref": "#/definitions/SectionName"
+    }, 
+    "createdAt": {
+     "type": "string", 
+     "description": "sampleValue: An ISO 8601 formatted date-time field. \nmappedField: ? \naction: 0 \ncomment: IP This needs to be located. ", 
+     "format": "date-time"
+    }
+   }, 
+   "type": "object", 
+   "description": "The notice skeleton constitutes the base response for each notice. It includes normalized and standardized fields that are common to all notices.", 
+   "title": "NoticeSkeleton"
+  }
+ }
+}
